@@ -1,0 +1,88 @@
+/*
+ * Created by SharpDevelop.
+ * User: jmanu_000
+ * Date: 15/10/2013
+ * Time: 07:22 p. m.
+ * 
+ * To change this template use Tools | Options | Coding | Edit Standard Headers.
+ */
+using System;
+using System.Collections;
+using System.IO;
+
+namespace files
+{
+class Requisito{
+		public int id;
+		public string nombre;
+		public string domicilio;
+		public string telefono;		
+		}
+	class Program
+	{
+		
+		public static void Main(string[] args)
+		{   Barchivo:
+				
+			string NomArch;
+			string linea;
+			string busqueda;
+			
+			try{
+                               
+				Console.WriteLine("Nombre del archivo .csv");
+                NomArch= Console.ReadLine();
+                                
+                StreamReader Reader = new StreamReader("C://"+NomArch+".csv");                                    
+                while(Reader!=null){
+                
+                try{
+                	
+                	Requisito Datos=new Requisito();
+        			ArrayList lista = new ArrayList();
+        		
+ 			   			while ((linea = Reader.ReadLine()) != null){
+	     	   			string[] columnas = linea.Split(',');
+	     	   			     			
+	     	   			Datos.id=int.Parse(columnas[0]);
+	     	   			Datos.nombre=columnas[1];
+	     	   			Datos.domicilio=columnas[2];
+	     	   			Datos.telefono=columnas[3];
+	     	   				     	   	
+	     	   			lista.Add(Datos);
+	     	   			
+	          	    	Console.Write("Id:");
+                    	Console.WriteLine(Datos.id);
+                    	Console.Write("Nombre:");
+                    	Console.WriteLine(Datos.nombre);
+                    	Console.Write("Telefono:");
+                    	Console.WriteLine(Datos.telefono);
+                    	Console.Write("Domicilio:");
+                    	Console.WriteLine(Datos.domicilio+"\n");
+                        Console.Write("Domicilio:");
+        				}
+                        Console.Write("Buscar otro archivo\n1)Si\n2)No\n");
+                        busqueda= Console.ReadLine();
+                        if(busqueda=="1"){
+                       goto Barchivo;
+                       }
+                        else{
+                        	Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+                        }
+                    }
+              
+            	catch{
+					Console.WriteLine("error");
+					}      
+           	 	}
+			}
+                catch{
+                    Console.WriteLine("Archivo no encontrado");
+                    }
+                			
+			Console.Write("Press any key to continue . . . ");
+			Console.ReadKey(true);
+		}
+	}
+	}
